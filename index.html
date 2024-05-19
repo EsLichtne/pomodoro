@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="image/tomato.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>POMODORO</title>
+  <script src="script.js" defer></script>
+</head>
+
+<body class="page__body">
+  <main class="page__content">
+    <div class="page__app pomodoro">
+      <progress class="pomodoro__progress" value="0"></progress>
+      <div class="pomodoro__wrapper">
+        <p class="pomodoro__mode-buttons">
+          <button class="pomodoro__mode-button pomodoro__mode-button--pomodoro pomodoro__button--active"
+            data-mode="pomodoro">
+            Помидор
+          </button>
+          <button class="pomodoro__mode-button pomodoro__mode-button--short-break" data-mode="shortBreak">
+            Короткий перерыв
+          </button>
+          <button class="pomodoro__mode-button pomodoro__mode-button--long-break" data-mode="longBreak">
+            Длинный перерыв
+          </button>
+        </p>
+        <div class="pomodoro__timer timer">
+          <span class="timer__minutes">25</span>
+          <span class="timer__separator">:</span>
+          <span class="timer__seconds">00</span>
+        </div>
+        <p class="pomodoro__result result">
+          <span class="visually-hidden">Количество завершённых помидоров:</span>
+          <span class="result__text">0</span>
+        </p>
+        <button class="pomodoro__main-button" data-action="start">
+          Запустить
+        </button>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
