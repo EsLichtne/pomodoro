@@ -1,0 +1,250 @@
+@font-face {
+  font-family: "Folks Shades";
+  font-style: normal;
+  src:
+    url("fonts/folks-shades.woff2") format("woff2"),
+    url("fonts/folks-shades.woff") format("woff");
+  font-display: swap;
+  unicode-range: U+0000-007f;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("fonts/comfortaa-regular.woff2") format("woff2"),
+    url("fonts/comfortaa-regular.woff") format("woff");
+  font-display: swap;
+  unicode-range: U+0410-044f, U+0000-007f;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("fonts/comfortaa-bold.woff2") format("woff2"),
+    url("fonts/comfortaa-bold.woff") format("woff");
+  font-display: swap;
+  unicode-range: U+0410-044f, U+0000-007f;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  font-style: normal;
+  font-weight: 600;
+  src:
+    url("fonts/comfortaa-semibold.woff2") format("woff2"),
+    url("fonts/comfortaa-semibold.woff") format("woff");
+  font-display: swap;
+  unicode-range: U+0410-044f, U+0000-007f;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --pomodoro: #e07a5f;
+  --pomodoro-accent: #da5f3e;
+  --shortBreak: #778da9;
+  --shortBreak-accent: #596f8c;
+  --longBreak: #f2cc8f;
+  --longBreak-accent: #e7a02f;
+
+  --text-dark: #432818;
+  --text-dark-opacity: rgba(67, 40, 24, 0.8);
+  --background-primary: #e9e5db;
+  --background-secondary: #f2eee3;
+  --background-tertiary: #e3dfd2;
+  --background-accent: #e6dec9;
+
+  --font-primary: "Comfortaa", "Arial", sans-serif;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.page__body {
+  --current-color: var(--pomodoro);
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 24px;
+  line-height: 100%;
+  color: var(--text-dark);
+  background-color: var(--background-primary);
+}
+
+.page__content {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.page__app {
+  width: 500px;
+}
+
+.pomodoro {
+  height: auto;
+  padding: 60px 40px 100px;
+  background-color: var(--background-secondary);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 2, 0.25);
+  border-radius: 8px;
+}
+
+.pomodoro__progress,
+.pomodoro__progress::-webkit-progress-bar {
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin-bottom: 20px;
+  background-color: var(--background-tertiary);
+  border-color: transparent;
+  border-radius: 20px;
+}
+
+.pomodoro__progress::-moz-progress-bar {
+  background-color: var(--current-color);
+  border-radius: 20px 0 0 20px;
+}
+
+.pomodoro__progress::-webkit-progress-value {
+  background-color: var(--current-color);
+  border-radius: 20px 0 0 20px;
+}
+
+.pomodoro__mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.pomodoro__mode-button {
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--background-secondary);
+  border-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 2, 0.25);
+  cursor: pointer;
+  transition: background-color 0.3s linear;
+}
+
+.pomodoro__mode-button--pomodoro {
+  background-color: var(--pomodoro);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--pomodoro-accent);
+  }
+}
+
+.pomodoro__mode-button--short-break {
+  background-color: var(--shortBreak);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--shortBreak-accent);
+  }
+}
+
+.pomodoro__mode-button--long-break {
+  color: var(--text-dark);
+  background-color: var(--longBreak);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--longBreak-accent);
+  }
+}
+
+.pomodoro__main-button {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  background-color: var(--background-secondary);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 2, 0.25);
+  border-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s linear;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--background-accent);
+  }
+}
+
+.pomodoro__timer {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  font-family: "Folks Shades";
+  font-size: 115px;
+  line-height: 100%;
+  font-weight: 700;
+  color: var(--current-color);
+}
+
+.pomodoro__result {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  &::before {
+    content: "";
+    width: 48px;
+    height: 48px;
+    background-image: url("image/tomato.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}
+
+.result__text {
+  font-family: "Folks Shades";
+  font-size: 40px;
+  color: var(--text-dark-opacity);
+}
