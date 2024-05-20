@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
   <title>POMODORO</title>
   <script src="script.js" defer></script>
+  <script src="scripts/modal.js" defer></script>
 </head>
 
 <body class="page__body">
@@ -46,6 +47,29 @@
       </div>
     </div>
   </main>
+  <dialog class="pomodoro__settings settings" id="dialog" aria-label="Настройки.">
+    <div class="settings__wrapper">
+      <button class="settings__close-button" type="button">
+        <span class="visually-hidden">Закрыть окно настроек.</span>
+      </button>
+      <form class="settings__form" method="dialog">
+        <label class="settings__label" for="pomodoro-count">Помидор (минут)</label>
+        <input class="settings__field" type="number" id="pomodoro-count" name="pomodoro-count" placeholder="25"
+          value="25">
+        <label class="settings__label" for="short-break-count">Короткий перерыв (минут)</label>
+        <input class="settings__field" type="number" id="short-break-count" name="short-break-count" placeholder="5"
+          value="5">
+        <label class="settings__label" for="long-break-count">Длинный перерыв (минут)</label>
+        <input class="settings__field" type="number" id="long-break-count" name="long-break-count" placeholder="30"
+          value="30">
+        <label class="settings__label settings__label--long-break" for="long-break-interval">Количество помидоров до
+          длинного перерыва</label>
+        <input class="settings__field" type="number" id="long-break-interval" name="long-break-interval" placeholder="5"
+          value="5">
+        <button class="button settings__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </dialog>
 </body>
 
 </html>

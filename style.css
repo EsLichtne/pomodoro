@@ -62,6 +62,7 @@
   --background-tertiary: #e3dfd2;
   --background-accent: #e6dec9;
   --box-shadow: rgba(67, 40, 24, 0.4);
+  --overlay: rgba(67, 40, 24, 0.4);
 
   --font-primary: "Comfortaa", "Arial", sans-serif;
 }
@@ -87,6 +88,11 @@
   line-height: 100%;
   color: var(--text-dark);
   background-color: var(--background-primary);
+  scrollbar-gutter: stable;
+
+  &:has(dialog) {
+    overflow: hidden;
+  }
 }
 
 .page__content {
@@ -263,4 +269,101 @@
   font-family: "Folks Shades";
   font-size: 40px;
   color: var(--text-dark-opacity);
+}
+
+.pomodoro__settings {
+  display: grid;
+  place-content: center;
+
+  &::backdrop {
+    background-color: var(--overlay);
+    cursor: pointer;
+  }
+}
+
+.settings {
+  position: relative;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+}
+
+.settings__wrapper {
+  width: 350px;
+  padding: 40px;
+  text-align: center;
+  background-color: var(--background-primary);
+  box-shadow: 0 0 30px 0 var(--box-shadow);
+}
+
+.settings__close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("image/close.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.settings__form {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.settings__capture {
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.settings__label {
+  font-size: 16px;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.settings__field {
+  width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-color: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 100%;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 var(--box-shadow);
+
+  &::placeholder {
+    color: var(--text-dark-opacity);
+  }
+}
+
+.settings__button {
+  width: 70%;
+  color: var(--background-secondary);
+  background-color: var(--pomodoro);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--pomodoro-accent);
+  }
 }
