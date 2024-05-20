@@ -1,6 +1,6 @@
-const modeButtonContainer = document.querySelector('.pomodoro__mode-buttons');
-const minutesElement = document.querySelector('.timer__minutes');
-const secondsElement = document.querySelector('.timer__seconds');
+const modeButtonsContainer = document.querySelector('.pomodoro__mode-buttons');
+const timerMinutes = document.querySelector('.timer__minutes');
+const timerSeconds = document.querySelector('.timer__seconds');
 const mainButton = document.querySelector('.pomodoro__main-button');
 const resetButton = document.querySelector('.pomodoro__reset-button');
 const progress = document.querySelector('.pomodoro__progress');
@@ -88,8 +88,8 @@ function updateClock() {
   const minutes = `${remainingTime.minutes}`.padStart(2, '0');
   const seconds = `${remainingTime.seconds}`.padStart(2, '0');
 
-  minutesElement.textContent = minutes;
-  secondsElement.textContent = seconds;
+  timerMinutes.textContent = minutes;
+  timerSeconds.textContent = seconds;
 
   const clue = timer.mode === 'pomodoro' ? 'Пора вернуться к работе' : 'Время перерыва';
   document.title = `${minutes}:${seconds} — ${clue}`;
@@ -123,7 +123,7 @@ function switchMode(mode) {
 };
 
 // Обработчик клика по контейнеру кнопок
-function onModeButtonContainerClick(event) {
+function onModeButtonsContainerClick(event) {
   buttonSound.play();
   const { mode } = event.target.dataset;
 
@@ -133,7 +133,7 @@ function onModeButtonContainerClick(event) {
   stopTimer();
 };
 
-modeButtonContainer.addEventListener('click', onModeButtonContainerClick);
+modeButtonsContainer.addEventListener('click', onModeButtonsContainerClick);
 
 mainButton.addEventListener('click', () => {
   buttonSound.play();
