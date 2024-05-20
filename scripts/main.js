@@ -20,11 +20,6 @@ const timer = {
   longBreak: 30,
   longBreakInterval: 5,
   sessions: 0,
-  remainingTime: {
-    total: 0,
-    minutes: 0,
-    seconds: 0,
-  },
 };
 
 let interval;
@@ -62,6 +57,7 @@ function startTimer() {
     updateClock();
 
     total = timer.remainingTime.total;
+
     if (total <= 0) {
       clearInterval(interval);
 
