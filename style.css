@@ -108,7 +108,7 @@
 
 .pomodoro {
   height: auto;
-  padding: 60px 40px 100px;
+  padding: 60px 40px 80px;
   background-color: var(--background-secondary);
   box-shadow: 0 0 30px 0 var(--box-shadow);
   border-radius: 8px;
@@ -189,6 +189,13 @@
   }
 }
 
+.pomodoro__action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+}
+
 .button {
   padding: 15px;
   font-family: inherit;
@@ -203,28 +210,47 @@
   transition: background-color 0.3s linear;
 }
 
-.pomodoro__main-button {
-  width: 100%;
-  margin-bottom: 20px;
-  color: var(--text-dark);
+.action-button {
+  display: grid;
+  place-content: center;
+  padding: 15px 20px;
   background-color: var(--background-secondary);
+
+  &::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: var(--background-accent);
+    background-color: var(--current-color);
   }
 }
 
-.pomodoro__reset-button {
-  width: 100%;
-  color: var(--text-dark);
-  background-color: var(--background-tertiary);
+.pomodoro__main-button {
+  &::before {
+    background-image: url("image/play.svg");
+  }
+}
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--background-accent);
+.pomodoro__main-button--active::before {
+  background-image: url("image/pause.svg");
+}
+
+.pomodoro__reset-button {
+  &::before {
+    background-image: url("image/broom.svg");
+  }
+}
+
+.pomodoro__settings-button {
+  &::before {
+    background-image: url("image/gear.svg");
   }
 }
 
