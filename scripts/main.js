@@ -2,9 +2,15 @@ const modeButtonsContainer = document.querySelector('.pomodoro__mode-buttons');
 const timerMinutes = document.querySelector('.timer__minutes');
 const timerSeconds = document.querySelector('.timer__seconds');
 const mainButton = document.querySelector('.pomodoro__main-button');
+const mainButtonClue = mainButton.querySelector('span');
 const resetButton = document.querySelector('.pomodoro__reset-button');
+const form = document.querySelector('.settings__form');
+const fields = form.querySelectorAll('.settings__field');
+const settingsButton = document.querySelector('.settings__button');
 const progress = document.querySelector('.pomodoro__progress');
 const counter = document.querySelector('.result__text');
+
+// Аудиофайлы
 const buttonSound = new Audio('sounds/click.mp3');
 const timerSound = new Audio('sounds/level-up.mp3');
 
@@ -17,6 +23,7 @@ const timer = {
 };
 
 let interval;
+let currentMode = 'pomodoro';
 
 // Запускает таймер
 function startTimer() {
@@ -26,7 +33,7 @@ function startTimer() {
   if (timer.mode === 'pomodoro') timer.sessions++;
 
   mainButton.dataset.action = 'stop';
-  mainButton.textContent = 'Остановить';
+  mainButtonClue.textContent = 'Остановить';
   mainButton.classList.add('pomodoro__main-button--active');
 
   interval = setInterval(function () {
@@ -62,7 +69,7 @@ function stopTimer() {
   clearInterval(interval);
 
   mainButton.dataset.action = 'start';
-  mainButton.textContent = 'Запустить';
+  mainButtonClue.textContent = 'Запустить';
   mainButton.classList.remove('pomodoro__main-button--active');
 }
 
@@ -126,6 +133,7 @@ function switchMode(mode) {
 function onModeButtonsContainerClick(event) {
   buttonSound.play();
   const { mode } = event.target.dataset;
+  currentMode = mode;
 
   if (!mode) return;
 
@@ -154,4 +162,20 @@ resetButton.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   switchMode('pomodoro');
+});
+
+settingsButton.addEventListener('click', () => {
+  const [
+    pomodoroCount,
+    shortBreakCount,
+    longBreakCount,
+    longBreakIntervalCount
+  ] = fields;
+
+  timer.pomodoro = pomodoroCount.value;
+  timer.shortBreak = shortBreakCount.value;
+  timer.longBreak = longBreakCount.value;
+  timer.longBreakInterval = longBreakIntervalCount.value;
+
+  switchMode(currentMode);
 });
