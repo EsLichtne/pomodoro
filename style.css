@@ -61,6 +61,7 @@
   --background-secondary: #f2eee3;
   --background-tertiary: #e3dfd2;
   --background-accent: #e6dec9;
+  --box-shadow: rgba(67, 40, 24, 0.4);
 
   --font-primary: "Comfortaa", "Arial", sans-serif;
 }
@@ -103,7 +104,7 @@
   height: auto;
   padding: 60px 40px 100px;
   background-color: var(--background-secondary);
-  box-shadow: 0 0 30px 0 rgba(0, 0, 2, 0.25);
+  box-shadow: 0 0 30px 0 var(--box-shadow);
   border-radius: 8px;
 }
 
@@ -146,7 +147,7 @@
   color: var(--background-secondary);
   border-color: transparent;
   border-radius: 8px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 2, 0.25);
+  box-shadow: 0 0 6px 0 var(--box-shadow);
   cursor: pointer;
   transition: background-color 0.3s linear;
 }
@@ -189,7 +190,7 @@
   line-height: 100%;
   font-weight: 600;
   text-transform: uppercase;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 2, 0.25);
+  box-shadow: 0 0 6px 0 var(--box-shadow);
   border-color: transparent;
   border-radius: 8px;
   cursor: pointer;
