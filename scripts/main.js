@@ -165,17 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 settingsButton.addEventListener('click', () => {
-  const [
-    pomodoroCount,
-    shortBreakCount,
-    longBreakCount,
-    longBreakIntervalCount
-  ] = fields;
-
-  timer.pomodoro = pomodoroCount.value;
-  timer.shortBreak = shortBreakCount.value;
-  timer.longBreak = longBreakCount.value;
-  timer.longBreakInterval = longBreakIntervalCount.value;
+  fields.forEach((field) => {
+    const setting = field.id;
+    timer[setting] = field.value;
+  });
 
   switchMode(currentMode);
 });
