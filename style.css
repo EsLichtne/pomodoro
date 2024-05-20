@@ -182,22 +182,37 @@
   }
 }
 
-.pomodoro__main-button {
-  width: 100%;
-  margin: 0 auto;
+.button {
   padding: 15px;
   font-family: inherit;
   font-size: 14px;
   line-height: 100%;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--text-dark);
-  background-color: var(--background-secondary);
   box-shadow: 0 0 6px 0 rgba(0, 0, 2, 0.25);
   border-color: transparent;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s linear;
+}
+
+.pomodoro__main-button {
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  background-color: var(--background-secondary);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--background-accent);
+  }
+}
+
+.pomodoro__reset-button {
+  width: 100%;
+  color: var(--text-dark);
+  background-color: var(--background-tertiary);
 
   &:hover,
   &:focus,
