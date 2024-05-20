@@ -20,10 +20,31 @@ const timer = {
   longBreak: 30,
   longBreakInterval: 5,
   sessions: 0,
+  remainingTime: {
+    total: 0,
+    minutes: 0,
+    seconds: 0,
+  },
 };
 
 let interval;
 let currentMode = 'pomodoro';
+
+// Извлекает данные таймера из LocalStorage
+function loadFromLocalStorage() {
+  const savedTimerSettings = JSON.parse(localStorage.getItem('timer'));
+
+  if (savedTimerSettings) {
+    Object.assign(timer, savedTimerSettings);
+    switchMode(timer.mode || currentMode);
+    counter.textContent = timer.sessions;
+  }
+};
+
+// Сохраняет данные таймера в LocalStorage
+function saveToLocalStorage() {
+  localStorage.setItem('timer', JSON.stringify(timer));
+};
 
 // Запускает таймер
 function startTimer() {
@@ -98,7 +119,7 @@ function updateClock() {
   timerMinutes.textContent = minutes;
   timerSeconds.textContent = seconds;
 
-  const clue = timer.mode === 'pomodoro' ? 'Пора вернуться к работе' : 'Время перерыва';
+  const clue = timer.mode === 'pomodoro' ? 'Пора за работу' : 'Время перерыва';
   document.title = `${minutes}:${seconds} — ${clue}`;
 
   progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
@@ -127,6 +148,7 @@ function switchMode(mode) {
   progress.setAttribute('max', timer.remainingTime.total);
 
   updateClock();
+  saveToLocalStorage();
 };
 
 // Обработчик клика по контейнеру кнопок
@@ -158,10 +180,11 @@ resetButton.addEventListener('click', () => {
   buttonSound.play();
   timer.sessions = 0;
   counter.textContent = timer.sessions;
+  saveToLocalStorage();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  switchMode('pomodoro');
+  loadFromLocalStorage();
 });
 
 settingsButton.addEventListener('click', () => {
@@ -171,4 +194,5 @@ settingsButton.addEventListener('click', () => {
   });
 
   switchMode(currentMode);
+  saveToLocalStorage();
 });
