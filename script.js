@@ -2,6 +2,7 @@ const modeButtonContainer = document.querySelector('.pomodoro__mode-buttons');
 const minutesElement = document.querySelector('.timer__minutes');
 const secondsElement = document.querySelector('.timer__seconds');
 const mainButton = document.querySelector('.pomodoro__main-button');
+const resetButton = document.querySelector('.pomodoro__reset-button');
 const progress = document.querySelector('.pomodoro__progress');
 const counter = document.querySelector('.result__text');
 const buttonSound = new Audio('sounds/click.mp3');
@@ -143,6 +144,12 @@ mainButton.addEventListener('click', () => {
   } else {
     stopTimer();
   }
+});
+
+resetButton.addEventListener('click', () => {
+  buttonSound.play();
+  timer.sessions = 0;
+  counter.textContent = timer.sessions;
 });
 
 document.addEventListener('DOMContentLoaded', () => {
