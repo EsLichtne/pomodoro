@@ -243,6 +243,12 @@
   background-image: url("image/pause.svg");
 }
 
+.pomodoro__rewind-button {
+  &::before {
+    background-image: url("image/rewind.svg");
+  }
+}
+
 .pomodoro__reset-button {
   &::before {
     background-image: url("image/broom.svg");
