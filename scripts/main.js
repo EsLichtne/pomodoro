@@ -1,12 +1,11 @@
 const modeButtonsContainer = document.querySelector('.pomodoro__mode-buttons');
+const actionButtonsContainer = document.querySelector('.pomodoro__action-buttons');
 const timerMinutes = document.querySelector('.timer__minutes');
 const timerSeconds = document.querySelector('.timer__seconds');
 const mainButton = document.querySelector('.pomodoro__main-button');
 const mainButtonClue = mainButton.querySelector('span');
-const resetButton = document.querySelector('.pomodoro__reset-button');
 const form = document.querySelector('.settings__form');
 const fields = form.querySelectorAll('.settings__field');
-const settingsButton = document.querySelector('.settings__button');
 const progress = document.querySelector('.pomodoro__progress');
 const counter = document.querySelector('.result__text');
 
@@ -46,18 +45,18 @@ function saveToLocalStorage() {
 function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
-  
-  mainButton.dataset.action = 'stop';
+
+  mainButton.dataset.action = 'pause';
   mainButton.title = 'Остановить';
   mainButtonClue.textContent = 'Остановить';
   mainButton.classList.add('pomodoro__main-button--active');
-  
+
   interval = setInterval(function () {
     timer.remainingTime = getRemainingTime(endTime);
     updateClock();
-    
+
     total = timer.remainingTime.total;
-    
+
     if (total <= 0) {
       clearInterval(interval);
 
@@ -162,35 +161,42 @@ function onModeButtonsContainerClick(event) {
 };
 
 modeButtonsContainer.addEventListener('click', onModeButtonsContainerClick);
+actionButtonsContainer.addEventListener('click', onActionButtonsContainerClick);
 
-mainButton.addEventListener('click', () => {
-  buttonSound.play();
-  const { action } = mainButton.dataset;
-
-  if (action === 'start') {
-    startTimer()
-  } else {
-    stopTimer();
+function onActionButtonsContainerClick(event) {
+  if (event.target.classList.contains('action-button')) {
+    buttonSound.play();
   }
-});
 
-resetButton.addEventListener('click', () => {
-  buttonSound.play();
-  timer.sessions = 0;
-  counter.textContent = timer.sessions;
-  saveToLocalStorage();
-});
+  if (event.target.classList.contains('pomodoro__main-button')) {
+    const { action } = mainButton.dataset;
+
+    if (action === 'start') {
+      startTimer()
+    } else {
+      stopTimer();
+    }
+  }
+
+  if (event.target.classList.contains('pomodoro__rewind-button')) { }
+
+  if (event.target.classList.contains('pomodoro__reset-button')) {
+    timer.sessions = 0;
+    counter.textContent = timer.sessions;
+    saveToLocalStorage();
+  }
+
+  if (event.target.classList.contains('pomodoro__settings-button')) {
+    fields.forEach((field) => {
+      const setting = field.name;
+      timer[setting] = field.value;
+    });
+
+    switchMode(currentMode);
+    saveToLocalStorage();
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   loadFromLocalStorage();
-});
-
-settingsButton.addEventListener('click', () => {
-  fields.forEach((field) => {
-    const setting = field.name;
-    timer[setting] = field.value;
-  });
-
-  switchMode(currentMode);
-  saveToLocalStorage();
 });
