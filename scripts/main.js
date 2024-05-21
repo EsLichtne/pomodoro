@@ -24,6 +24,7 @@ const timer = {
 
 let interval;
 let currentMode = 'pomodoro';
+switchMode(currentMode);
 
 // Извлекает данные таймера из LocalStorage
 function loadFromLocalStorage() {
@@ -45,24 +46,23 @@ function saveToLocalStorage() {
 function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
-
-  if (timer.mode === 'pomodoro') timer.sessions++;
-
+  
   mainButton.dataset.action = 'stop';
   mainButtonClue.textContent = 'Остановить';
   mainButton.classList.add('pomodoro__main-button--active');
-
+  
   interval = setInterval(function () {
     timer.remainingTime = getRemainingTime(endTime);
     updateClock();
-
+    
     total = timer.remainingTime.total;
-
+    
     if (total <= 0) {
       clearInterval(interval);
 
       switch (timer.mode) {
         case 'pomodoro':
+          timer.sessions++;
           counter.textContent = timer.sessions;
 
           if (timer.sessions % timer.longBreakInterval === 0) {
