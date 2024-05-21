@@ -160,9 +160,6 @@ function onModeButtonsContainerClick(event) {
   stopTimer();
 };
 
-modeButtonsContainer.addEventListener('click', onModeButtonsContainerClick);
-actionButtonsContainer.addEventListener('click', onActionButtonsContainerClick);
-
 function onActionButtonsContainerClick(event) {
   if (event.target.classList.contains('action-button')) {
     buttonSound.play();
@@ -196,6 +193,9 @@ function onActionButtonsContainerClick(event) {
     saveToLocalStorage();
   }
 }
+
+modeButtonsContainer.addEventListener('click', onModeButtonsContainerClick);
+actionButtonsContainer.addEventListener('click', onActionButtonsContainerClick);
 
 document.addEventListener('DOMContentLoaded', () => {
   loadFromLocalStorage();
