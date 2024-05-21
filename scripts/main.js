@@ -48,6 +48,7 @@ function startTimer() {
   const endTime = Date.parse(new Date()) + total * 1000;
   
   mainButton.dataset.action = 'stop';
+  mainButton.title = 'Остановить';
   mainButtonClue.textContent = 'Остановить';
   mainButton.classList.add('pomodoro__main-button--active');
   
@@ -86,6 +87,7 @@ function stopTimer() {
   clearInterval(interval);
 
   mainButton.dataset.action = 'start';
+  mainButton.title = 'Запустить';
   mainButtonClue.textContent = 'Запустить';
   mainButton.classList.remove('pomodoro__main-button--active');
 }
