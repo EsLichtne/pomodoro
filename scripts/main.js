@@ -180,7 +180,10 @@ function onActionButtonsContainerClick(event) {
     }
   }
 
-  if (event.target.classList.contains('pomodoro__rewind-button')) { }
+  if (event.target.classList.contains('pomodoro__rewind-button')) {
+    clearInterval(interval);
+    switchCurrent();
+  }
 
   if (event.target.classList.contains('pomodoro__reset-button')) {
     timer.sessions = 0;
