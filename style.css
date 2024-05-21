@@ -294,6 +294,7 @@
 .result__text {
   font-family: "Folks Shades";
   font-size: 40px;
+  line-height: 100%;
   color: var(--text-dark-opacity);
 }
 
