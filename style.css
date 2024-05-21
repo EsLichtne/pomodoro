@@ -137,13 +137,14 @@
 
 .pomodoro__mode-buttons {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 10px;
   margin: 0;
   margin-bottom: 40px;
 }
 
 .pomodoro__mode-button {
+  width: 100%;
   padding: 10px;
   font-family: inherit;
   font-size: 14px;
@@ -301,6 +302,10 @@
 .pomodoro__settings {
   display: grid;
   place-content: center;
+
+  &:not([open]) {
+    display: none;
+  }
 
   &::backdrop {
     background-color: var(--overlay);
