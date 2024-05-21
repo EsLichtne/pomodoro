@@ -90,7 +90,7 @@
   background-color: var(--background-primary);
   scrollbar-gutter: stable;
 
-  &:has(dialog) {
+  &:has(dialog[open]) {
     overflow: hidden;
   }
 }
