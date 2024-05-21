@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 settingsButton.addEventListener('click', () => {
   fields.forEach((field) => {
-    const setting = field.id;
+    const setting = field.name;
     timer[setting] = field.value;
   });
 
