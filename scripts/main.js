@@ -41,6 +41,28 @@ function saveToLocalStorage() {
   localStorage.setItem('timer', JSON.stringify(timer));
 };
 
+// Переключает активный режим
+function switchCurrent() {
+  clearInterval(interval);
+
+  switch (timer.mode) {
+    case 'pomodoro':
+      timer.sessions++;
+      counter.textContent = timer.sessions;
+
+      if (timer.sessions % timer.longBreakInterval === 0) {
+        switchMode('longBreak');
+      } else {
+        switchMode('shortBreak');
+      }
+      break;
+    default:
+      switchMode('pomodoro');
+  }
+
+  stopTimer();
+};
+
 // Запускает таймер
 function startTimer() {
   let { total } = timer.remainingTime;
@@ -58,25 +80,8 @@ function startTimer() {
     total = timer.remainingTime.total;
 
     if (total <= 0) {
-      clearInterval(interval);
-
-      switch (timer.mode) {
-        case 'pomodoro':
-          timer.sessions++;
-          counter.textContent = timer.sessions;
-
-          if (timer.sessions % timer.longBreakInterval === 0) {
-            switchMode('longBreak');
-          } else {
-            switchMode('shortBreak');
-          }
-          break;
-        default:
-          switchMode('pomodoro');
-      }
-
+      switchCurrent();
       timerSound.play();
-      stopTimer();
     }
   }, 1000);
 };
